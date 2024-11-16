@@ -8,15 +8,23 @@ The Inner Circle Trading (ICT) strategy, developed by Michael J. Huddleston, foc
 
 ### 2.1 Market Structure
 - **Swing Highs and Lows**: Identify significant swing highs and lows to understand the overall market structure.
+- **Break of Structure (BOS)**: Occurs when price breaches a key swing high/low, signaling a potential trend reversal or continuation.
+- **Market Structure Shift (MSS)**: A smaller timeframe shift indicating a change in short-term market direction, often used for precise entries.
 - **Market Phases**: Recognize different market phases such as accumulation, distribution, uptrend, and downtrend.
 
 ### 2.2 Liquidity Pools
 - **Definition**: Areas where liquidity is likely to be concentrated, such as previous highs and lows, round numbers, and order blocks.
+- **Sell-side vs. Buy-side Liquidity**:
+  - **Sell-side**: Stops below recent lows.
+  - **Buy-side**: Stops above recent highs.
 - **Stop Hunts**: Understand how institutional traders may target liquidity pools to trigger stop-loss orders and create trading opportunities.
+- **Sweep of Liquidity**: A scenario where price moves aggressively to take out liquidity before resuming its primary trend.
 
-### 2.3 Order Blocks
+### 2.3 Order Blocks (OB)
 - **Definition**: Areas where institutional traders have placed large orders, causing significant price movements.
 - **Identification**: Look for consolidation areas before a strong price move, which indicates the presence of an order block.
+- **Bullish OB**: A bearish candle before a strong upward move.
+- **Bearish OB**: A bullish candle before a strong downward move.
 
 ### 2.4 Fair Value Gaps (FVG)
 - **Definition**: Gaps between price levels where there is an imbalance between buyers and sellers.
@@ -25,10 +33,25 @@ The Inner Circle Trading (ICT) strategy, developed by Michael J. Huddleston, foc
 ### 2.5 Time and Price Theory
 - **Optimal Trade Entry (OTE)**: Identify the optimal entry point within a price retracement, typically between the 61.8% and 79% Fibonacci retracement levels.
 - **Kill Zones**: Specific times of the day when institutional traders are most active, such as the London Open, New York Open, and London Close.
+- **Sessions**:
+  - **London Session**: High volatility, often sets the daily range.
+  - **New York Session**: Continuation or reversal of London trends.
+  - **Asia Session**: Often a consolidation phase.
+- **High-Probability Times**:
+  - **Killzones**: Specific times during sessions with heightened activity:
+    - **London Killzone**: 2 AM – 5 AM EST.
+    - **New York Killzone**: 7 AM – 10 AM EST.
+    - **London Close Killzone**: 10 AM – 12 PM EST.
+  - **Daily Open and Close Levels**: These are key reference points for intraday movements.
 
 ### 2.6 Institutional Order Flow
 - **Bias**: Determine the overall market bias (bullish or bearish) based on institutional order flow.
 - **Confirmation**: Use multiple timeframes to confirm the market bias and identify high-probability trading setups.
+- **Institutional Reference Points**:
+  - **Equilibrium**: The 50% level of a range or price move, often a key point for retracements or reversals.
+  - **Premium/Discount Zones**:
+    - **Premium Zone**: Above equilibrium, favorable for selling.
+    - **Discount Zone**: Below equilibrium, favorable for buying.
 
 ## 3. ICT Trading Strategy Steps
 
@@ -82,7 +105,88 @@ The Inner Circle Trading (ICT) strategy, developed by Michael J. Huddleston, foc
 - Confirm the market bias using multiple timeframes (daily, 4-hour, 1-hour).
 - Look for confluence between the identified order blocks, FVGs, and liquidity pools.
 
-## 5. Example Code for ICT Trading Setup
+## 5. Detailed Steps for ICT Trading Setup
+
+### Step 1: Identify Market Structure
+- **Determine the Overall Trend:**
+  - **Daily Chart:** Begin by analyzing the daily chart to understand the primary trend.
+  - **Higher Highs and Higher Lows:** An uptrend is characterized by price making higher highs and higher lows.
+  - **Lower Highs and Lower Lows:** A downtrend is indicated by lower highs and lower lows.
+- **Identify Market Phases:**
+  - **Accumulation Phase:** Occurs when the market moves sideways after a downtrend, indicating potential buying by institutional traders.
+  - **Markup Phase (Uptrend):** Price begins to rise as demand exceeds supply, look for clear higher highs and higher lows.
+  - **Distribution Phase:** Market moves sideways after an uptrend, suggesting institutions may be offloading positions.
+  - **Markdown Phase (Downtrend):** Price declines as supply exceeds demand, characterized by lower highs and lower lows.
+- **Key Actions:**
+  - **Trendlines:** Draw trendlines to visualize the trend.
+  - **Swing Points:** Mark significant swing highs and lows.
+  - **Break of Structure (BOS):** Identify points where the trend might be reversing.
+
+### Step 2: Locate Liquidity Pools
+- **Identify Previous Swing Highs and Lows:**
+  - **Liquidity Zones:**
+    - **Buy-Side Liquidity:** Above recent swing highs where stop-loss orders for short positions are placed.
+    - **Sell-Side Liquidity:** Below recent swing lows where stop-loss orders for long positions are located.
+  - **Expect Price Movement:** Price often moves to these liquidity zones to trigger stop-loss orders and collect liquidity before reversing.
+- **Look for Round Numbers and Order Blocks:**
+  - **Psychological Levels:** Round numbers (e.g., 1.2000 in EUR/USD) attract significant trading activity.
+  - **Order Blocks:** Areas where institutional orders are clustered, identified by a consolidation period before a sharp price move.
+- **Key Actions:**
+  - **Mark Liquidity Zones:** Highlight these areas on your chart as potential targets for price.
+  - **Anticipate Stop Hunts:** Be aware that price may intentionally move to these levels.
+
+### Step 3: Find Order Blocks
+- **On the 4-Hour Chart:**
+  - **Identify Consolidation Areas:** Look for tight trading ranges before significant price movements.
+  - **Bullish Order Block:** The last bearish candle before a strong bullish move, indicating institutional buying interest.
+  - **Bearish Order Block:** The last bullish candle before a strong bearish move, signifying institutional selling pressure.
+- **Mark These Areas:**
+  - **Draw Rectangles:** Encompass the body of the order block candle(s).
+  - **Extend Zones:** Project the order block zones into the future as these areas can act as support or resistance.
+- **Key Actions:**
+  - **Wait for Retracement:** Anticipate price returning to the order block for potential entries.
+  - **Confirm with Volume:** Higher volume during the order block adds validity.
+
+### Step 4: Use Fair Value Gaps (FVG)
+- **Identify FVGs on the 1-Hour Chart:**
+  - **Definition:** A Fair Value Gap occurs when there is a price gap between three consecutive candles, representing an imbalance where not all orders were filled.
+  - **Spotting FVGs:** In an uptrend, if **Candle 2's** low is above **Candle 1's** high, the gap between **Candle 1's** high and **Candle 2's** low is an FVG. In a downtrend, if **Candle 2's** high is below **Candle 1's** low.
+- **Use These Gaps:**
+  - **Entry Points:** Price often retraces to fill the FVG before resuming the trend. Consider waiting for price to enter the FVG for a better entry.
+  - **Exit Points:** FVGs can also act as target areas for taking profit.
+- **Key Actions:**
+  - **Mark FVG Zones:** Draw rectangles over the gaps.
+  - **Monitor Price Action:** Look for reversal patterns within the FVG.
+
+### Step 5: Apply Time and Price Theory
+- **Optimal Trade Entry (OTE):**
+  - **Use Fibonacci Retracement:** Draw from swing low to swing high (uptrend) or swing high to swing low (downtrend).
+  - **OTE Zone:** Focus on the 61.8% to 79% retracement levels, considered optimal for entering trades in the direction of the trend.
+- **Focus on Kill Zones:**
+  - **High Liquidity Periods:**
+    - **London Kill Zone:** 2 AM – 5 AM EST.
+    - **New York Kill Zone:** 7 AM – 10 AM EST.
+  - **Why Kill Zones Matter:** Institutional traders are most active, and increased volatility provides better trading opportunities.
+- **Key Actions:**
+  - **Align Entry Timing:** Plan trades to coincide with these periods.
+  - **Combine with Other Signals:** Ensure other ICT elements align during the kill zone.
+
+### Step 6: Confirm Institutional Order Flow
+- **Multiple Timeframe Analysis:**
+  - **Daily Chart:** Establish overall market bias.
+  - **4-Hour Chart:** Refine trend direction and key levels.
+  - **1-Hour Chart:** Identify entry zones like FVGs and order blocks.
+- **Look for Confluence:**
+  - **Alignment of Signals:** Ensure that market structure, liquidity pools, order blocks, and FVGs all support the trade idea.
+  - **Institutional Bias:** Trades should be in the direction of perceived institutional order flow.
+- **Final Confirmation:**
+  - **Price Action Signals:** Look for candlestick patterns indicating reversal or continuation.
+  - **Volume Analysis:** Increased volume at key levels adds strength to the setup.
+- **Key Actions:**
+  - **Double-Check Analysis:** Verify that all elements support the trade.
+  - **Risk Assessment:** Ensure the risk-to-reward ratio meets your criteria.
+
+## 6. Example Code for ICT Trading Setup
 
 ```python
 import pandas as pd

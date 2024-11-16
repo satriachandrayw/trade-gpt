@@ -1,0 +1,24 @@
+@startuml
+package "Trade Signal Bot" {
+  component "Chart Analyzer" {
+    [ICT Strategy Engine]
+    [Time-based Scheduler]
+  }
+  
+  component "News Crawler" {
+    [News API Integration]
+    [Sentiment Analyzer]
+  }
+  
+  component "Telegram Bot" {
+    [Signal Formatter]
+    [Message Sender]
+  }
+  
+  [Chart Data Provider] --> [ICT Strategy Engine] : "Price Data (API)"
+  [ICT Strategy Engine] --> [Telegram Bot] : "Trade Signal"
+  [News API Integration] --> [Sentiment Analyzer] : "Economic News"
+  [Sentiment Analyzer] --> [ICT Strategy Engine] : "News Impact Score"
+  [Time-based Scheduler] --> [ICT Strategy Engine] : "Trigger Analysis"
+}
+@enduml

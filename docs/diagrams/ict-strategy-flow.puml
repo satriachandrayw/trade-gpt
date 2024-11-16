@@ -1,0 +1,13 @@
+
+@startuml
+participant "ICT Strategy Engine" as Engine
+participant "Price Data" as Data
+participant "Scheduler" as Scheduler
+participant "Telegram Bot" as Bot
+
+Scheduler -> Engine: "Trigger Analysis"
+Engine -> Data: "Fetch Live Data"
+Data -> Engine: "Return Price Data"
+Engine -> Engine: "Analyze Market Structure\nDetect Liquidity Zones\nIdentify Fair Value Gaps"
+Engine -> Bot: "Send Signal Details"
+@enduml
