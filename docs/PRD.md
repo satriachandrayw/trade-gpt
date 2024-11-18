@@ -15,9 +15,12 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
 ## 2. Features
 
 ### 2.1 Data Collection
-- **📰 Forex News Scraper**: Crawl news from forex news portals.
-  - **Functional Requirement**: The scraper should fetch news articles every hour.
-  - **Non-Functional Requirement**: The scraper should handle up to 1000 articles per hour without performance degradation.
+- **📰 Forex News Browser**: Browse news from Tavily's API.
+  - **Functional Requirement**: The browser should fetch news articles every day.
+  - **Non-Functional Requirement**: The browser should handle up to 1000 articles per day without performance degradation.
+- **📅 Economic Calendar Scraper**: Crawl economic calendar data from forex news portals.
+  - **Functional Requirement**: The scraper should fetch calendar events every hour.
+  - **Non-Functional Requirement**: The scraper should handle up to 500 events per hour without performance degradation.
 - **📊 Technical Chart Data Fetcher**: Gather technical chart data using APIs.
   - **Functional Requirement**: Fetch data for XAU/USD pair every 5 minutes.
   - **Non-Functional Requirement**: Ensure data fetch operations complete within 2 seconds.
@@ -27,7 +30,7 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
   - **Functional Requirement**: Remove duplicates and irrelevant data points.
   - **Non-Functional Requirement**: Data cleaning should maintain data integrity and consistency.
 - **🔍 Feature Extraction**: Extract relevant features for decision making.
-  - **Functional Requirement**: Extract features such as sentiment scores from news and technical indicators from chart data.
+  - **Functional Requirement**: Extract features such as sentiment scores from news, economic impact from calendar events, and technical indicators from chart data.
   - **Non-Functional Requirement**: Feature extraction should be completed within 1 minute for each data batch.
 
 ### 2.3 Model Training
@@ -71,7 +74,7 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
 - `freqtrade` for automated trading
 
 ### 3.3 APIs
-- Forex news portal API (if available)
+- Tavily API for forex news
 - Alpha Vantage or Yahoo Finance for technical chart data
 - Forex broker API for trade execution
 
@@ -92,14 +95,15 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
 ## 5. Milestones
 
 ### 5.1 Phase 1
-- **🛠️ Milestone 1**: Implement forex news scraper.
-- **🛠️ Milestone 2**: Implement technical chart data fetcher.
-- **🛠️ Milestone 3**: Develop data processing pipeline.
-- **🛠️ Milestone 4**: Use GPT-4 for textual data analysis and signal generation.
-- **🛠️ Milestone 5**: Integrate Telegram bot for notifications.
+- **🛠️ Milestone 1**: Implement forex news browser using Tavily's API.
+- **🛠️ Milestone 2**: Implement economic calendar scraper.
+- **🛠️ Milestone 3**: Implement technical chart data fetcher.
+- **🛠️ Milestone 4**: Develop data processing pipeline.
+- **🛠️ Milestone 5**: Use GPT-4 for textual data analysis and signal generation.
+- **🛠️ Milestone 6**: Integrate Telegram bot for notifications.
 
 ### 5.2 Phase 2
-- **🛠️ Milestone 6**: Integrate with FreqTrade for automated execution.
+- **🛠️ Milestone 7**: Integrate with FreqTrade for automated execution.
 
 ## 6. Risks and Mitigations
 
@@ -127,7 +131,7 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
 
 The system architecture comprises three main components:
 1. **Chart Analyzer**: Implements ICT strategy to identify trading signals.
-2. **News Crawler**: Gathers and processes fundamental news data.
+2. **News Browser**: Gathers and processes fundamental news data using Tavily's API.
 3. **Telegram Bot**: Sends trade signals and rationale to the user.
 4. **FreqTrade Integration**: Automates trade execution based on generated signals.
 
@@ -137,11 +141,14 @@ The system architecture comprises three main components:
 - **Chart Analyzer**:
   - **ICT Strategy Engine**: Analyzes market structure, liquidity zones, and fair value gaps.
   - **Time-based Scheduler**: Triggers analysis at predefined intervals.
-- **News Crawler**:
-  - **News API Integration**: Fetches economic news.
+- **News Browser**:
+  - **Tavily API Integration**: Fetches economic news.
   - **Sentiment Analyzer**: Processes news data to determine sentiment.
+- **Economic Calendar Scraper**:
+  - **Calendar API Integration**: Fetches economic calendar events.
+  - **Event Impact Analyzer**: Processes calendar events to determine economic impact.
 - **AI Models**:
-  - **GPT-4 Analysis**: Analyzes processed news data to generate a news impact score.
+  - **GPT-4 Analysis**: Analyzes processed news and calendar data to generate a news impact score.
 - **Telegram Bot**:
   - **Signal Formatter**: Formats trade signals.
   - **Message Sender**: Sends trade signals to users.
@@ -160,11 +167,13 @@ The system architecture comprises three main components:
   - schedule
   - python-telegram-bot
   - requests
+  - BeautifulSoup
   - TextBlob
   - freqtrade
 - Configure API connections:
   - MetaTrader/TradingView for chart data
-  - NewsAPI/ForexFactory for news
+  - Tavily API for news
+  - ForexFactory for economic calendar events
   - Telegram Bot API
   - Forex broker API
 
@@ -175,17 +184,22 @@ The system architecture comprises three main components:
    - Develop FVG identification
    - Set up time-based filters
 
-2. **News Crawler**:
-   - Set up news source integrations
+2. **News Browser**:
+   - Set up Tavily API integration
    - Implement sentiment analysis
    - Create impact scoring system
 
-3. **Telegram Bot**:
+3. **Economic Calendar Scraper**:
+   - Set up calendar source integrations
+   - Implement event impact analysis
+   - Create economic impact scoring system
+
+4. **Telegram Bot**:
    - Design message templates
    - Implement signal formatting
    - Set up real-time notifications
 
-4. **FreqTrade Integration**:
+5. **FreqTrade Integration**:
    - Develop custom strategy scripts
    - Configure FreqTrade core
    - Implement broker API integration
@@ -194,6 +208,7 @@ The system architecture comprises three main components:
 1. **Algorithm Validation**:
    - Backtest ICT strategy components
    - Validate news sentiment accuracy
+   - Validate economic impact analysis
    - Test signal generation timing
 
 2. **Performance Testing**:
@@ -217,11 +232,13 @@ The system architecture comprises three main components:
 ### 10.1 Signal Quality
 - Technical Analysis Accuracy: >70%
 - News Sentiment Correlation: >65%
+- Economic Impact Accuracy: >70%
 - Signal Timing Precision: <2 seconds
 
 ### 10.2 System Performance
 - API Response Time: <500ms
 - News Processing Delay: <1 minute
+- Calendar Event Processing Delay: <1 minute
 - Notification Delivery: <1 second
 
 ### 10.3 Reliability
@@ -235,6 +252,7 @@ The system architecture comprises three main components:
    - Accurate market structure identification
    - Reliable liquidity zone detection
    - Precise FVG recognition
+   - Accurate economic impact analysis
 
 2. **User Experience**
    - Clear signal presentation
