@@ -1,24 +1,48 @@
 @startuml
 package "Trade Signal Bot" {
-  component "Chart Analyzer" {
-    [ICT Strategy Engine]
-    [Time-based Scheduler]
+
+  rectangle "Phase 1" {
+    component "Chart Analyzer" {
+      [ICT Strategy Engine]
+      [Time-based Scheduler]
+    }
+
+    component "News Crawler" {
+      [News API Integration]
+      [Sentiment Analyzer]
+    }
+
+    component "AI Models" {
+      [GPT-4 Analysis]
+    }
+
+    component "Telegram Bot" {
+      [Signal Formatter]
+      [Message Sender]
+    }
+
+    [Chart Data Provider] --> [ICT Strategy Engine] : "Price Data (API)"
+    [ICT Strategy Engine] --> [Telegram Bot] : "Trade Signals"
+
+    [News API Integration] --> [Sentiment Analyzer] : "Economic News"
+    [Sentiment Analyzer] --> [GPT-4 Analysis] : "Processed News Data"
+    [GPT-4 Analysis] --> [ICT Strategy Engine] : "News Impact Score"
+
+    [Time-based Scheduler] --> [ICT Strategy Engine] : "Trigger Analysis"
   }
-  
-  component "News Crawler" {
-    [News API Integration]
-    [Sentiment Analyzer]
+
+  rectangle "Phase 2" {
+    component "FreqTrade Integration" {
+      [Custom Strategy Scripts]
+      [FreqTrade Core]
+      [Broker API]
+    }
+
+    [ICT Strategy Engine] --> [Custom Strategy Scripts] : "Trading Signals"
+    [Custom Strategy Scripts] --> [FreqTrade Core] : "Execute Trades"
+    [FreqTrade Core] --> [Broker API] : "Place Orders"
+    [FreqTrade Core] --> [Telegram Bot] : "Trade Updates"
   }
-  
-  component "Telegram Bot" {
-    [Signal Formatter]
-    [Message Sender]
-  }
-  
-  [Chart Data Provider] --> [ICT Strategy Engine] : "Price Data (API)"
-  [ICT Strategy Engine] --> [Telegram Bot] : "Trade Signal"
-  [News API Integration] --> [Sentiment Analyzer] : "Economic News"
-  [Sentiment Analyzer] --> [ICT Strategy Engine] : "News Impact Score"
-  [Time-based Scheduler] --> [ICT Strategy Engine] : "Trigger Analysis"
+
 }
 @enduml

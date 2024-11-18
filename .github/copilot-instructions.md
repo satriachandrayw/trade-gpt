@@ -19,6 +19,8 @@ Include user stories and acceptance criteria.
 Outline the project scope, timeline, and milestones.
 Provide wireframes or mockups if necessary.
 Incorporate your software engineering knowledge to ensure technical feasibility and robustness.
+Write the Technical System Architecture and System Flow of the PRD
+by plantuml format.
 
 Interaction Style:
 Break down the problem into smaller components to avoid overwhelming you.

@@ -10,7 +10,7 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
 
 ### 1.3 Scope
 - Phase 1: Data collection, processing, and manual signal notification.
-- Phase 2: Automated trade execution.
+- Phase 2: Automated trade execution using FreqTrade.
 
 ## 2. Features
 
@@ -49,9 +49,13 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
   - **Non-Functional Requirement**: Ensure the bot can handle up to 1000 users concurrently.
 
 ### 2.6 Automated Execution (Phase 2)
-- **🔗 Trading Platform Integration**: Integrate with a trading platform API to execute trades automatically.
+- **🔗 FreqTrade Integration**: Integrate with FreqTrade to execute trades automatically.
   - **Functional Requirement**: Execute trades within 1 second of signal generation.
   - **Non-Functional Requirement**: Ensure secure and reliable API communication.
+  - **Components**:
+    - **Custom Strategy Scripts**: Implement our AI and ICT-based trading strategies within FreqTrade.
+    - **FreqTrade Core**: The main FreqTrade application handling trade execution and risk management.
+    - **Broker API**: Interface to forex brokers for executing trades on the XAU/USD pair.
 
 ## 3. Technical Requirements
 
@@ -64,10 +68,12 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
 - `BeautifulSoup` for web scraping
 - `pandas` for data processing
 - `python-telegram-bot` for Telegram notifications
+- `freqtrade` for automated trading
 
 ### 3.3 APIs
 - Forex news portal API (if available)
 - Alpha Vantage or Yahoo Finance for technical chart data
+- Forex broker API for trade execution
 
 ## 4. User Stories
 
@@ -93,7 +99,7 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
 - **🛠️ Milestone 5**: Integrate Telegram bot for notifications.
 
 ### 5.2 Phase 2
-- **🛠️ Milestone 6**: Integrate with trading platform API for automated execution.
+- **🛠️ Milestone 6**: Integrate with FreqTrade for automated execution.
 
 ## 6. Risks and Mitigations
 
@@ -115,6 +121,7 @@ The purpose of this application is to provide trading signals for the XAU/USD pa
 - **GPT-4 Model**: A large language model used to analyze textual data and generate insights.
 - **Telegram Bot**: A bot that sends messages via the Telegram messaging platform.
 - **ICT Strategy**: Inner Circle Trading strategy that focuses on market structure, liquidity pools, order blocks, and fair value gaps.
+- **FreqTrade**: An open-source cryptocurrency trading bot that will be adapted for forex trading.
 
 ## 8. Architecture Design
 
@@ -122,62 +129,29 @@ The system architecture comprises three main components:
 1. **Chart Analyzer**: Implements ICT strategy to identify trading signals.
 2. **News Crawler**: Gathers and processes fundamental news data.
 3. **Telegram Bot**: Sends trade signals and rationale to the user.
+4. **FreqTrade Integration**: Automates trade execution based on generated signals.
 
-### System Architecture Diagram
-![Trade Signal Bot Architecture](./diagrams/trade-signal-bot.png)
+### System Architecture
 
-### ICT Strategy Engine Flow
-![ICT Strategy Flow](./diagrams/ict-strategy-flow.png)
+**Phase 1**:
+- **Chart Analyzer**:
+  - **ICT Strategy Engine**: Analyzes market structure, liquidity zones, and fair value gaps.
+  - **Time-based Scheduler**: Triggers analysis at predefined intervals.
+- **News Crawler**:
+  - **News API Integration**: Fetches economic news.
+  - **Sentiment Analyzer**: Processes news data to determine sentiment.
+- **AI Models**:
+  - **GPT-4 Analysis**: Analyzes processed news data to generate a news impact score.
+- **Telegram Bot**:
+  - **Signal Formatter**: Formats trade signals.
+  - **Message Sender**: Sends trade signals to users.
 
-### ICT Strategy Engine Implementation
-
-The ICT Strategy Engine will identify trade setups using the following steps:
-
-1. **Market Structure Analysis**
-   - Detect higher highs (HH), lower lows (LL), and consolidation zones
-   - Algorithm: Sliding window approach for trend formation analysis
-   
-2. **Liquidity Zone Identification**
-   - Find price levels with stop-loss clusters
-   - Algorithm: Analyze recent highs/lows with volume data overlay
-
-3. **Fair Value Gap (FVG) Detection**
-   - Identify buying/selling pressure imbalances
-   - Algorithm: Pattern recognition for wicks and gaps
-
-4. **Time-Based Filtering**
-   - Session-based analysis (London/NY)
-   - Implementation: Python schedule library
-
-### News Crawler Design
-
-1. **Source Integration**
-   - NewsAPI/ForexFactory RSS integration
-   - Implementation: requests + BeautifulSoup
-
-2. **Sentiment Scoring**
-   - Keyword analysis: "hawkish," "dovish"
-   - Implementation: TextBlob/NLTK
-
-3. **Output Format**
-   - Numerical volatility score
-   - Impact level classification
-
-### Telegram Bot Implementation
-
-1. **Signal Formatter**
-   - Market condition summary
-   - Entry/SL/TP details
-   - News impact assessment
-
-2. **Message Format**
-
-🔔 *Trade Signal - XAU/USD* 🔔  
-- Entry: 1925.30  
-- SL: 1918.00  
-- TP: 1940.50  
-- Rationale: Liquidity grab above resistance, bullish order block confirmed.  
-- News Impact: Medium (FOMC Minutes scheduled in 2 hours).  
+**Phase 2**:
+- **FreqTrade Integration**:
+  - **Custom Strategy Scripts**: Implements AI and ICT-based trading strategies.
+  - **FreqTrade Core**: Executes trades based on signals.
+  - **Broker API**: Places orders with forex brokers.
+  - **Trade Updates**: Sends trade updates to the Telegram Bot.
 
 ## 9. Implementation Steps
 
@@ -187,10 +161,12 @@ The ICT Strategy Engine will identify trade setups using the following steps:
   - python-telegram-bot
   - requests
   - TextBlob
+  - freqtrade
 - Configure API connections:
   - MetaTrader/TradingView for chart data
   - NewsAPI/ForexFactory for news
   - Telegram Bot API
+  - Forex broker API
 
 ### 9.2 Core Module Development
 1. **ICT Strategy Engine**:
@@ -208,6 +184,11 @@ The ICT Strategy Engine will identify trade setups using the following steps:
    - Design message templates
    - Implement signal formatting
    - Set up real-time notifications
+
+4. **FreqTrade Integration**:
+   - Develop custom strategy scripts
+   - Configure FreqTrade core
+   - Implement broker API integration
 
 ### 9.3 Testing Protocol
 1. **Algorithm Validation**:
