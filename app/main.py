@@ -2,13 +2,13 @@ import asyncio
 import threading
 from app.services.news_service import NewsService
 from app.scheduler.market_scheduler import MarketScheduler
-from app.core.runner import start_scheduler  # Add this import
+from app.core.runner import start_scheduler  
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.routers import news
+from app.routers import news, calendar_routes, chart_routes
 from app.core.logger import get_logger
 
 logger = get_logger(__name__)
@@ -31,6 +31,12 @@ app.add_middleware(
 
 # Include routers
 app.include_router(news.router, prefix=settings.API_V1_STR)
+app.include_router(calendar_routes.router, prefix=settings.API_V1_STR)
+app.include_router(chart_routes.router, prefix=settings.API_V1_STR)
+
+@app.get("/")
+async def root():
+    return {"message": "Trade GPT API is running"}
 
 @app.on_event("startup")
 def start_scheduler_thread():
